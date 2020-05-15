@@ -20,4 +20,4 @@ Pull requests are welcome for any social league team member.
 
 Please make sure to update tests as appropriate.
 
-Good Luck
+Good Luck !
