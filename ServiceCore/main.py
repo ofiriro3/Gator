@@ -1,5 +1,8 @@
+import json
+
 from flask import Flask, request
-from ServiceCore.LatestGameEndPoint.LiveGamesRepository import LiveGamesRepository
+from ServiceCore.Repositories.LiveGamesRepository import LiveGamesRepository
+from ServiceCore.Repositories.UserRepository import UserRepository
 
 app = Flask(__name__)
 
@@ -18,6 +21,20 @@ def get_latest_games():
 
     response = app.response_class(
         response=json_response,
+        status=200,
+        mimetype='application/json'
+    )
+
+    return response
+
+
+@app.route("/getUser", methods=['Post'])
+def get_user_info():
+    user_repository = UserRepository()
+    user_repository_response = user_repository.get_user_info(request.form)
+
+    response = app.response_class(
+        response=user_repository_response,
         status=200,
         mimetype='application/json'
     )
